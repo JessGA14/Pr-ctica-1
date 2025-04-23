@@ -1,17 +1,17 @@
 module Tarea where
 
 --Ejercicio 1
-distanciaPuntos :: Floating a => (a, a) -> (a, a) -> a
+distanciaPuntos :: (Float,Float) -> (Float,Float) -> Float
 distanciaPuntos (x1, y1) (x2, y2) = sqrt ((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
 --Ejercicio 2
 valorAbsoluto :: Int -> Int 
 valorAbsoluto x = 
-    if x > 0 then x 
+     if x > 0 then x 
      else  x * (-1)
 
 --Ejercicio 3 
-pendiente :: Floating a => (a, a) -> (a, a) -> a
+pendiente :: (Float, Float) -> (Float, Float) -> Float
 pendiente  (x1, y1) (x2, y2) = (y2 - y1) / (x2 - x1)
 
 --Ejercicio 4
@@ -21,29 +21,18 @@ hipotenusa b h = sqrt ((b ** 2) + (h ** 2))
 --Ejercicio 5
 raices :: Float -> Float -> Float -> (Float, Float)
 raices a b c = 
-    let d = sqrt (b ** 2 - 4 * a * c) 
-    in ((-b + d) / (2 * a), (-b - d) / (2 * a))
+  ((-b + sqrt (b ** 2 - 4 * a * c)) / (2 * a), 
+   (-b - sqrt (b ** 2 - 4 * a * c)) / (2 * a))
+
 
 --Ejercicio 6
-semiP :: Float -> Float -> Float -> Float
-semiP a b c = (a + b + c)/2
-
 areaTriangulo :: Float -> Float -> Float -> Float
-areaTriangulo a b c = sqrt (s * (s - a) * (s - b) * (s - c))
-  where
-    s = (a + b + c) / 2 
+areaTriangulo a b c = sqrt (((a + b + c) / 2) * (((a + b + c) / 2 - a) * ((a + b + c) / 2 - b) * ((a + b + c) / 2 - c)))
 
 --Ejercicio 7
 esBisiesto :: Int -> Bool
-esBisiesto x =
-    if ( x  `mod` 400 == 0) then
-    True
-    else if ( x  `mod` 100 == 0) then 
-    False 
-    else if ( x  `mod` 4 == 0) then
-    True 
-    else 
-    False
+esBisiesto x = x `mod` 4 == 0
+
 
 --Ejercicio 8
 comparador :: Int -> Int -> Int
